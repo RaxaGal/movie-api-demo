@@ -1,0 +1,35 @@
+# # docker-compose.yml
+# version: '1.0' #format version for this docker compose file
+
+version: '3.6'
+services:
+
+  # movie-frontend:
+  #   container_name: movie-frontend
+  #   restart: always
+  #   build: .
+  #   ports:
+  #   - '4200:4200'
+  #   links:
+  #     - app
+
+  app:
+    container_name: movie-api
+    restart: always
+    build: .
+    ports:
+      - '3000:3000'
+    external_links:
+      - mongo
+
+  mongo:
+    image: mongo:4.4
+    container_name: movie-api-mongodb
+    restart: always
+    ports:
+      - '27017-27019:27017-27019'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: username
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - ./config/mongodb:/docker-entrypoint-initdb.d

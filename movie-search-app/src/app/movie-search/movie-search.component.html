@@ -1,0 +1,26 @@
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+<div class="movie-search col-12">
+    <div>
+        <input matInput name="movieSearch" [(ngModel)]="searchTerm" type="text" placeholder="Search for movies">
+    </div>
+    <div mat-fab color="warn" (click)="searchMovies()">
+        <mat-icon color="warn">search</mat-icon>
+    </div>
+    <div (click)="refreshMoviesDatabase()">
+        <mat-icon color="warn">refresh</mat-icon>
+    </div>
+</div>
+
+<div class="movies" style="margin: 1rem; align-items: flex-start;">
+    <div *ngFor="let movie of movieList" style="width: 180px; max-height:300px; display: flex; flex-direction: row; ">
+        <img *ngIf="movie?.Poster" onerror="this.src = '../../assets/images/fallback-thumbnail.svg';"
+            [src]="movie?.Poster" height="200px" width="180px" style="border-radius: 5px;object-fit: cover;">
+        <div style="font-weight: 600; display: block; padding: 4px;">
+            <ng-container> {{movie?.Title}} | {{movie?.Director}}</ng-container>
+            <div class="tooltip" style="position: absolute; margin: 0px;">
+                <mat-icon style="margin-left: 5px;">info</mat-icon>
+                <span class="tooltiptext">{{movie?.Plot}}</span>
+            </div>
+        </div>
+    </div>
+</div>

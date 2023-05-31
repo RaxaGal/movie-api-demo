@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2021",
+    "module": "node16",
+    "outDir": "dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node"
+  },
+  "exclude": [
+    "movie-search-app", //frontend app
+    "node_modules",
+    "dist"
+  ]
+}
